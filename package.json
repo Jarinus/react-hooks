@@ -9,7 +9,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "prebuild": "ctix create tsconfig.json",
+    "build": "tsc",
+    "postbuild": "ctix clean tsconfig.json"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -24,6 +26,7 @@
     "@types/jest": "^27.5.1",
     "@types/react": "^17.0.45",
     "babel-jest": "^28.1.0",
+    "ctix": "^0.6.0",
     "jest": "^28.1.0",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^28.0.2",
