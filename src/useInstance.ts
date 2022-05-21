@@ -14,6 +14,10 @@ function hasOnDismountCallback(instance: any): instance is OnDismount {
     && typeof (instance as OnDismount).onDismount === 'function'
 }
 
+/**
+ * `useInstance` instantiates the given class exactly once when the hook is first called. Subsequent renders will keep
+ * the same instance.
+ */
 export default function useInstance<T>(InstanceClass: new () => T): T {
   const ref = useRef<T>()
 
