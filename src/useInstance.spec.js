@@ -1,12 +1,12 @@
 import { renderHook } from '@testing-library/react-hooks'
-import useSingleton from './useSingleton'
+import useInstance from './useInstance'
 
-describe('useSingleton', () => {
+describe('useInstance', () => {
   it('should mount', () => {
     const instance = {}
     const constructor = jest.fn().mockReturnValue(instance)
 
-    const { result } = renderHook(() => useSingleton(constructor))
+    const { result } = renderHook(() => useInstance(constructor))
 
     expect(result.current).toBe(instance)
   })
@@ -15,7 +15,7 @@ describe('useSingleton', () => {
     const instance = {}
     const constructor = jest.fn().mockReturnValue(instance)
 
-    const { result, rerender } = renderHook(() => useSingleton(constructor))
+    const { result, rerender } = renderHook(() => useInstance(constructor))
 
     rerender()
 
@@ -27,7 +27,7 @@ describe('useSingleton', () => {
     const instance = {}
     const constructor = jest.fn().mockReturnValue(instance)
 
-    const { result, rerender } = renderHook((constructor) => useSingleton(constructor), {
+    const { result, rerender } = renderHook((constructor) => useInstance(constructor), {
       initialProps: constructor
     })
 

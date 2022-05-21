@@ -6,7 +6,7 @@ class Counter {
 }
 
 const Component = () => {
-  const counter = useSingleton(Counter)
+  const counter = useInstance(Counter)
   
   return <CountComponent counter={counter} />
 }
