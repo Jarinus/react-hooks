@@ -28,7 +28,7 @@ describe('useInstance', () => {
     const constructor = jest.fn().mockReturnValue(instance)
 
     const { result, rerender } = renderHook((constructor) => useInstance(constructor), {
-      initialProps: constructor
+      initialProps: constructor,
     })
 
     const newInstance = {}
@@ -39,5 +39,33 @@ describe('useInstance', () => {
     expect(result.current).not.toBe(newInstance)
     expect(constructor).toHaveBeenCalledTimes(1)
     expect(newFactory).not.toHaveBeenCalled()
+  })
+
+  it('should call OnMount callback', () => {
+    const onMount = jest.fn()
+    const onDismount = jest.fn()
+
+    const instance = { onMount, onDismount }
+    const constructor = jest.fn().mockReturnValue(instance)
+
+    renderHook(() => useInstance(constructor))
+
+    expect(onMount).toHaveBeenCalled()
+    expect(onDismount).not.toHaveBeenCalled()
+  })
+
+  it('should call OnDismount callback', () => {
+    const onMount = jest.fn()
+    const onDismount = jest.fn()
+
+    const instance = { onMount, onDismount }
+    const constructor = jest.fn().mockReturnValue(instance)
+
+    const { unmount } = renderHook(() => useInstance(constructor))
+
+    unmount()
+
+    expect(onMount).toHaveBeenCalled()
+    expect(onDismount).toHaveBeenCalled()
   })
 })
