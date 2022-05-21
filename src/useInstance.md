@@ -3,8 +3,17 @@
 `useInstance` instantiates the given class exactly once when the hook is first called. Subsequent renders will keep the
 same instance.
 
-Note that the class' constructor will be called on the server when using SSR. Any logic that depends on the client's
-environment, such as using `window` or `document`, should be moved to the optional `onMount` callback instead.
+## SSR (Server-Side Rendering)
+
+When using SSR, the class' constructor will be called once on the server and once on the client.
+
+## Hot Reloading
+
+If your hot reloading system maintains component state across reloads, such as `react-hot-loader`
+or [Next.js](https://nextjs.org/docs/basic-features/fast-refresh), the instance will not reflect any
+changes to its class' code.
+
+This is due to `useInstance` using a `React.useRef` to save the instance.
 
 ## Usage
 
