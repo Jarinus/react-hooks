@@ -1,7 +1,6 @@
 import { useRef } from 'react'
-import { Constructor } from './types/Constructor'
 
-export default function useInstance<T>(InstanceClass: Constructor<T>): T {
+export default function useInstance<T>(InstanceClass: new () => T): T {
   const ref = useRef<T>()
 
   const instance = () => {
