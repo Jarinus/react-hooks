@@ -1,10 +1,14 @@
 {
   "name": "@jarinus/react-hooks",
+  "repository": "git://github.com/Jarinus/react-hooks.git",
   "version": "0.0.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
   },
   "peerDependencies": {
     "react": "^17.0.2"
