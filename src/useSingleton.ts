@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-export default function useSingleton<T>(InstanceClass: Constructor<T>): T {
+export default function useSingleton<T>(InstanceClass: new () => T): T {
   const ref = useRef<T>()
 
   const instance = () => {
