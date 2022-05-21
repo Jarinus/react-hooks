@@ -9,6 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "test": "jest",
     "prebuild": "ctix create tsconfig.json",
     "build": "tsc",
     "postbuild": "ctix clean tsconfig.json"
