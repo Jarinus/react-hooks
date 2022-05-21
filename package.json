@@ -3,6 +3,7 @@
   "repository": "git://github.com/Jarinus/react-hooks.git",
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
