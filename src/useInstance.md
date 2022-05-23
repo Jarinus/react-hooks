@@ -10,8 +10,8 @@ When using SSR, the class' constructor will be called once on the server and onc
 ## Hot Reloading
 
 If your hot reloading system maintains component state across reloads, such as `react-hot-loader`
-or [Next.js](https://nextjs.org/docs/basic-features/fast-refresh), the instance will not reflect any
-changes to its class' code.
+or [Next.js](https://nextjs.org/docs/basic-features/fast-refresh), the instance will not reflect any changes to its
+class' code.
 
 This is due to `useInstance` using a `React.useRef` to save the instance.
 
@@ -19,7 +19,7 @@ This is due to `useInstance` using a `React.useRef` to save the instance.
 
 ### Default
 
-```tsx
+```jsx
 import { useInstance } from '@jarinus/react-hooks'
 
 class Counter {

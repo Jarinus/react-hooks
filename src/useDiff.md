@@ -6,7 +6,9 @@
 
 ### Default
 
-```tsx
+```jsx
+import { useDiff } from '@jarinus/react-hooks'
+
 const Component = () => {
   const [count, setCount] = useState(0)
 
