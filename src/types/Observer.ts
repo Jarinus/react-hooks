@@ -1,1 +1,1 @@
-export type Observer<T> = (value: T) => void
+export type Observer<T> = (value: T) => void | (() => void)

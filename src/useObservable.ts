@@ -6,6 +6,7 @@ export type EmitAction<T> = T
 
 export default function useObservable<T>(): [Observable<T>, Dispatch<EmitAction<T>>] {
   const observersRef = useRef<Observer<T>[]>([])
+  const destructorsRef = useRef<(() => void)[]>([])
 
   const observable: Observable<T> = useMemo(() => ({
     observe(observer) {
@@ -27,8 +28,14 @@ export default function useObservable<T>(): [Observable<T>, Dispatch<EmitAction<
 
   const emit: Dispatch<EmitAction<T>> = useCallback((value) => {
     setTimeout(() => {
+      destructorsRef.current.forEach(destructor => destructor())
+      destructorsRef.current = []
+
       observersRef.current.forEach(observer => {
-        observer(value)
+        const result = observer(value)
+        if (typeof result === 'function') {
+          destructorsRef.current.push(result)
+        }
       })
     })
   }, [])
